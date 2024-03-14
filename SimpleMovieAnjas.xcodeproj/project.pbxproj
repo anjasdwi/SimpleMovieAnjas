@@ -18,6 +18,16 @@
 		67A774312BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774302BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITests.swift */; };
 		67A774332BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774322BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITestsLaunchTests.swift */; };
 		67A774402BA1F86A00C0F6C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7743F2BA1F86A00C0F6C1 /* HomeView.swift */; };
+		67A7744A2BA3227500C0F6C1 /* UIStackView+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774492BA3227500C0F6C1 /* UIStackView+DSL.swift */; };
+		67A7744C2BA3229600C0F6C1 /* NSObject+Withable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7744B2BA3229600C0F6C1 /* NSObject+Withable.swift */; };
+		67A7744E2BA322BA00C0F6C1 /* UIView+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7744D2BA322BA00C0F6C1 /* UIView+DSL.swift */; };
+		67A774502BA322EA00C0F6C1 /* UIImage+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7744F2BA322EA00C0F6C1 /* UIImage+DSL.swift */; };
+		67A774522BA3230400C0F6C1 /* UILabel+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774512BA3230400C0F6C1 /* UILabel+DSL.swift */; };
+		67A774542BA3232500C0F6C1 /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774532BA3232500C0F6C1 /* ViewBuilder.swift */; };
+		67A774572BA324E600C0F6C1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774562BA324E600C0F6C1 /* Image.swift */; };
+		67A774592BA3250000C0F6C1 /* Wording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774582BA3250000C0F6C1 /* Wording.swift */; };
+		67A7745B2BA325B500C0F6C1 /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7745A2BA325B500C0F6C1 /* ReuseIdentifying.swift */; };
+		67A7745D2BA326E200C0F6C1 /* UICollectionView+CellRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7745C2BA326E200C0F6C1 /* UICollectionView+CellRegister.swift */; };
 		ED4AC8AD8D3FA777289C433A /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2CD10026336BD753E848B4 /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +66,16 @@
 		67A774302BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMovieAnjasUITests.swift; sourceTree = "<group>"; };
 		67A774322BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMovieAnjasUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		67A7743F2BA1F86A00C0F6C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		67A774492BA3227500C0F6C1 /* UIStackView+DSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+DSL.swift"; sourceTree = "<group>"; };
+		67A7744B2BA3229600C0F6C1 /* NSObject+Withable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Withable.swift"; sourceTree = "<group>"; };
+		67A7744D2BA322BA00C0F6C1 /* UIView+DSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+DSL.swift"; sourceTree = "<group>"; };
+		67A7744F2BA322EA00C0F6C1 /* UIImage+DSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+DSL.swift"; sourceTree = "<group>"; };
+		67A774512BA3230400C0F6C1 /* UILabel+DSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+DSL.swift"; sourceTree = "<group>"; };
+		67A774532BA3232500C0F6C1 /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
+		67A774562BA324E600C0F6C1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		67A774582BA3250000C0F6C1 /* Wording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wording.swift; sourceTree = "<group>"; };
+		67A7745A2BA325B500C0F6C1 /* ReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
+		67A7745C2BA326E200C0F6C1 /* UICollectionView+CellRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CellRegister.swift"; sourceTree = "<group>"; };
 		6A836C3C3031089A00EB8CE6 /* Pods-SimpleMovieAnjasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMovieAnjasTests.release.xcconfig"; path = "Target Support Files/Pods-SimpleMovieAnjasTests/Pods-SimpleMovieAnjasTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E2CD10026336BD753E848B4 /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5C82D7614A4189ACEBDB639 /* Pods_SimpleMovieAnjasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMovieAnjasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,8 +140,9 @@
 				67A774182BA1EDAD00C0F6C1 /* Assets.xcassets */,
 				67A7741A2BA1EDAD00C0F6C1 /* LaunchScreen.storyboard */,
 				67A774152BA1EDAB00C0F6C1 /* Main.storyboard */,
-				67A774472BA1FFB900C0F6C1 /* Helpers */,
 				67A774452BA1FF2100C0F6C1 /* Components */,
+				67A774552BA324CC00C0F6C1 /* Constant */,
+				67A774472BA1FFB900C0F6C1 /* Helpers */,
 				67A774412BA1FC7000C0F6C1 /* Modules */,
 				67A774442BA1FF0000C0F6C1 /* NetworkServices */,
 				67A774462BA1FF2E00C0F6C1 /* ProtocolsExtensions */,
@@ -189,6 +210,9 @@
 		67A774462BA1FF2E00C0F6C1 /* ProtocolsExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				67A774482BA3226800C0F6C1 /* DSL */,
+				67A7745A2BA325B500C0F6C1 /* ReuseIdentifying.swift */,
+				67A7745C2BA326E200C0F6C1 /* UICollectionView+CellRegister.swift */,
 			);
 			path = ProtocolsExtensions;
 			sourceTree = "<group>";
@@ -198,6 +222,28 @@
 			children = (
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		67A774482BA3226800C0F6C1 /* DSL */ = {
+			isa = PBXGroup;
+			children = (
+				67A774492BA3227500C0F6C1 /* UIStackView+DSL.swift */,
+				67A7744B2BA3229600C0F6C1 /* NSObject+Withable.swift */,
+				67A7744D2BA322BA00C0F6C1 /* UIView+DSL.swift */,
+				67A7744F2BA322EA00C0F6C1 /* UIImage+DSL.swift */,
+				67A774512BA3230400C0F6C1 /* UILabel+DSL.swift */,
+				67A774532BA3232500C0F6C1 /* ViewBuilder.swift */,
+			);
+			path = DSL;
+			sourceTree = "<group>";
+		};
+		67A774552BA324CC00C0F6C1 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				67A774562BA324E600C0F6C1 /* Image.swift */,
+				67A774582BA3250000C0F6C1 /* Wording.swift */,
+			);
+			path = Constant;
 			sourceTree = "<group>";
 		};
 		86AA7D43510D70710F85CEE7 /* Frameworks */ = {
@@ -462,9 +508,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A774522BA3230400C0F6C1 /* UILabel+DSL.swift in Sources */,
 				67A774142BA1EDAB00C0F6C1 /* HomeViewController.swift in Sources */,
+				67A774542BA3232500C0F6C1 /* ViewBuilder.swift in Sources */,
+				67A774592BA3250000C0F6C1 /* Wording.swift in Sources */,
+				67A7744C2BA3229600C0F6C1 /* NSObject+Withable.swift in Sources */,
+				67A7744E2BA322BA00C0F6C1 /* UIView+DSL.swift in Sources */,
+				67A774572BA324E600C0F6C1 /* Image.swift in Sources */,
+				67A7745D2BA326E200C0F6C1 /* UICollectionView+CellRegister.swift in Sources */,
+				67A7745B2BA325B500C0F6C1 /* ReuseIdentifying.swift in Sources */,
+				67A7744A2BA3227500C0F6C1 /* UIStackView+DSL.swift in Sources */,
 				67A774402BA1F86A00C0F6C1 /* HomeView.swift in Sources */,
 				67A774102BA1EDAB00C0F6C1 /* AppDelegate.swift in Sources */,
+				67A774502BA322EA00C0F6C1 /* UIImage+DSL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
