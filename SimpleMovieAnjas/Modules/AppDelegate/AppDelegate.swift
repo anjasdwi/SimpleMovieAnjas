@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func getInitialViewController() -> UIViewController {
-        return HomeViewController()
+        let viewModel = HomeViewModel()
+        return HomeViewController.create(withViewModel: viewModel)
     }
 
 }
