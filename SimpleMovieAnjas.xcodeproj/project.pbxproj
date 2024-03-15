@@ -37,6 +37,9 @@
 		67A774722BA3613300C0F6C1 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774712BA3613200C0F6C1 /* SearchBarView.swift */; };
 		67A774752BA3620900C0F6C1 /* MovieTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774742BA3620900C0F6C1 /* MovieTextField.swift */; };
 		67A774772BA372AF00C0F6C1 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774762BA372AF00C0F6C1 /* UIViewController+Keyboard.swift */; };
+		67A774792BA3ECC100C0F6C1 /* NetworkServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774782BA3ECC100C0F6C1 /* NetworkServiceManager.swift */; };
+		67A7747B2BA3ECE100C0F6C1 /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7747A2BA3ECE100C0F6C1 /* ApiRouter.swift */; };
+		67A7747D2BA3ED1000C0F6C1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7747C2BA3ED1000C0F6C1 /* NetworkError.swift */; };
 		ED4AC8AD8D3FA777289C433A /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2CD10026336BD753E848B4 /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +97,9 @@
 		67A774712BA3613200C0F6C1 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		67A774742BA3620900C0F6C1 /* MovieTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTextField.swift; sourceTree = "<group>"; };
 		67A774762BA372AF00C0F6C1 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
+		67A774782BA3ECC100C0F6C1 /* NetworkServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceManager.swift; sourceTree = "<group>"; };
+		67A7747A2BA3ECE100C0F6C1 /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
+		67A7747C2BA3ED1000C0F6C1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		6A836C3C3031089A00EB8CE6 /* Pods-SimpleMovieAnjasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMovieAnjasTests.release.xcconfig"; path = "Target Support Files/Pods-SimpleMovieAnjasTests/Pods-SimpleMovieAnjasTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E2CD10026336BD753E848B4 /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5C82D7614A4189ACEBDB639 /* Pods_SimpleMovieAnjasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMovieAnjasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +224,7 @@
 		67A774442BA1FF0000C0F6C1 /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
+				67A7747E2BA3F60100C0F6C1 /* NetworkServiceManager */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -311,6 +318,16 @@
 				67A774742BA3620900C0F6C1 /* MovieTextField.swift */,
 			);
 			path = MovieTextField;
+			sourceTree = "<group>";
+		};
+		67A7747E2BA3F60100C0F6C1 /* NetworkServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				67A774782BA3ECC100C0F6C1 /* NetworkServiceManager.swift */,
+				67A7747A2BA3ECE100C0F6C1 /* ApiRouter.swift */,
+				67A7747C2BA3ED1000C0F6C1 /* NetworkError.swift */,
+			);
+			path = NetworkServiceManager;
 			sourceTree = "<group>";
 		};
 		86AA7D43510D70710F85CEE7 /* Frameworks */ = {
@@ -588,10 +605,13 @@
 				67A7744E2BA322BA00C0F6C1 /* UIView+DSL.swift in Sources */,
 				67A7746C2BA34DF000C0F6C1 /* UIImage+LoadUrl.swift in Sources */,
 				67A774752BA3620900C0F6C1 /* MovieTextField.swift in Sources */,
+				67A7747B2BA3ECE100C0F6C1 /* ApiRouter.swift in Sources */,
 				67A774772BA372AF00C0F6C1 /* UIViewController+Keyboard.swift in Sources */,
 				67A774572BA324E600C0F6C1 /* Image.swift in Sources */,
 				67A7745D2BA326E200C0F6C1 /* UICollectionView+CellRegister.swift in Sources */,
 				67A7745B2BA325B500C0F6C1 /* ReuseIdentifying.swift in Sources */,
+				67A774792BA3ECC100C0F6C1 /* NetworkServiceManager.swift in Sources */,
+				67A7747D2BA3ED1000C0F6C1 /* NetworkError.swift in Sources */,
 				67A7745F2BA32B8C00C0F6C1 /* HomeViewModel.swift in Sources */,
 				67A7744A2BA3227500C0F6C1 /* UIStackView+DSL.swift in Sources */,
 				67A774402BA1F86A00C0F6C1 /* HomeView.swift in Sources */,
