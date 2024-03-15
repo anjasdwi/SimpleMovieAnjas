@@ -12,11 +12,12 @@ import RxCocoa
 
 protocol HomeViewModelInput {
     var viewDidLoad: PublishRelay<Void> { get }
+    var searchKeyword: BehaviorRelay<String> { get }
 }
 
 protocol HomeViewModelOutput {
     var updateViewsSignal: Signal<Void> { get }
-    var dataDummies: Driver<[HomeViewListSectionModel]> { get }
+    var homeViewListSection: Driver<[HomeViewListSectionModel]> { get }
 }
 
 protocol HomeViewModelInterface: HomeViewModelInput, HomeViewModelOutput {}
@@ -28,12 +29,13 @@ final class HomeViewModel: HomeViewModelInterface {
 
     // MARK: View event methods
     let viewDidLoad = PublishRelay<Void>()
+    let searchKeyword = BehaviorRelay<String>(value: "")
 
     // MARK: Observables for handle the data and section
-    var dataDummies: Driver<[HomeViewListSectionModel]> {
-        Observable
-            .just(generateSectionModel())
-            .asDriver(onErrorJustReturn: [])
+    private let _homeViewListSection = BehaviorRelay<[HomeViewListSectionModel]>(value: [])
+    var homeViewListSection: Driver<[HomeViewListSectionModel]> {
+        _homeViewListSection
+            .asDriver()
     }
 
     // MARK: Update views observables
@@ -42,7 +44,11 @@ final class HomeViewModel: HomeViewModelInterface {
         updateViews.asSignal()
     }
 
-    init() {
+    // MARK: - Managers
+    private let movieNetworkService: MovieRepositoryInterface
+
+    init(movieNetworkService: MovieRepositoryInterface = MovieRepository()) {
+        self.movieNetworkService = movieNetworkService
         self.bindInput()
     }
 }
@@ -55,6 +61,12 @@ extension HomeViewModel {
         viewDidLoad
             .bind(to: updateViews)
             .disposed(by: disposeBag)
+
+        searchKeyword
+            .map { $0.isEmpty ? "man" : $0 }
+            .bind { [weak self] term in
+                self?.fetchMovieList(term: term)
+            }.disposed(by: disposeBag)
     }
 
 }
@@ -62,15 +74,33 @@ extension HomeViewModel {
 // MARK: - Network
 extension HomeViewModel {
 
-    // FIXME: For dummies data
-    func generateSectionModel() -> [HomeViewListSectionModel] {
-        let item = MovieCardCVCViewModel(
-            title: "Captain America: The First Avenger",
-            year: "2011",
-            type: "Movie",
-            posterUrl: "https://m.media-amazon.com/images/M/MV5BNzAxMjg0NjYtNjNlOS00NTdlLThkMGEtMjAwYjk3NmNkOGFhXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX300.jpg")
+    /// Fetch data from movie list API
+    private func fetchMovieList(term: String) {
 
-        let items: [MovieCardCVCViewModel] = Array(repeating: item, count: 10)
+        let req = MovieRequestParams(term: term, page: 1)
+        movieNetworkService.getMovieList(requestParams: req) { [weak self] result in
+            guard let self else { return }
+
+            switch result {
+            case .success(let movieListModel):
+                _homeViewListSection.accept(generateSectionModel(from: movieListModel.search ?? []))
+            case .failure(let error):
+                print("Handle error here", error)
+            }
+
+        }
+
+    }
+
+    private func generateSectionModel(from model: [MovieDetailModel]) -> [HomeViewListSectionModel] {
+        let items = model.map {
+            MovieCardCVCViewModel(
+                title: $0.title ?? "",
+                year: $0.year ?? "",
+                type: $0.type ?? "",
+                posterUrl: $0.poster ?? ""
+            )
+        }
 
         return [HomeViewListSectionModel(items: items)]
     }

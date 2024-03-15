@@ -69,7 +69,7 @@ extension HomeViewController {
             })
 
         viewModel
-            .dataDummies
+            .homeViewListSection
             .drive(mainView.movieListCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
 
@@ -92,6 +92,8 @@ extension HomeViewController {
             .when(.recognized)
             .do(afterNext: { [weak self] _ in
                 self?.showNavigationBar()
+                self?.mainView.searchBarView.searchTextField.text = ""
+                self?.viewModel.searchKeyword.accept("")
             })
             .map { _ in true }
             .bind(to: mainView.searchBarView.cancelLabel.rx.isHidden)
@@ -102,6 +104,13 @@ extension HomeViewController {
             .bind { [weak self] _ in
                 self?.view.endEditing(true)
             }
+            .disposed(by: disposeBag)
+
+        mainView.searchBarView.searchTextField
+            .rx.controlEvent(.editingChanged)
+            .debounce(.milliseconds(700), scheduler: MainScheduler.instance)
+            .withLatestFrom(mainView.searchBarView.searchTextField.rx.text.orEmpty)
+            .bind(to: self.viewModel.searchKeyword)
             .disposed(by: disposeBag)
 
     }

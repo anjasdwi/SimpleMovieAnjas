@@ -26,7 +26,7 @@ final class MovieCardCVC: UICollectionViewCell, ReuseIdentifying {
     private let titleLabel = UILabel()
         .numberOfLines(2)
         .textColor(.white)
-        .font(.boldSystemFont(ofSize: 16))
+        .font(.boldSystemFont(ofSize: 14))
 
     private let typeLabel = UILabel()
         .numberOfLines(1)
