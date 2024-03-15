@@ -10,6 +10,22 @@ import Foundation
 struct MovieCardCVCViewModel {
     let title: String
     let year: String
-    let type: String
     let posterUrl: String
+
+    private let type: String
+    var typeFormatted: String {
+        type.capitalized
+    }
+
+    init(
+        title: String = "-",
+        year: String = "-",
+        type: String = "-",
+        posterUrl: String = "-"
+    ) {
+        self.title = title
+        self.year = year
+        self.type = type
+        self.posterUrl = posterUrl
+    }
 }

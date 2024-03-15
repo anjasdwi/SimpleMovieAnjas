@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import SkeletonView
 
 final class MovieCardCVC: UICollectionViewCell, ReuseIdentifying {
 
@@ -56,14 +57,16 @@ final class MovieCardCVC: UICollectionViewCell, ReuseIdentifying {
             typeYearSV
         }
 
-    lazy var cardView = UIView {
+    private lazy var cardView = UIView {
             bannerView
             gradientView
             mainSV
         }
         .backgroundColor(.black)
-        .cornerRadius(20)
-
+        .cornerRadius(20).with {
+            $0.isSkeletonable = true
+            $0.skeletonCornerRadius = 20
+        }
 
     var viewModel: MovieCardCVCViewModel! {
         didSet {
@@ -74,19 +77,8 @@ final class MovieCardCVC: UICollectionViewCell, ReuseIdentifying {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
-    }
-
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-
-        DispatchQueue.main.async {
-            let gradient = CAGradientLayer().with {
-                $0.frame = self.gradientView.bounds
-                $0.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-                $0.cornerRadius = 20
-            }
-            self.gradientView.layer.insertSublayer(gradient, at: 0)
-        }
+        hideSkeleton()
+        resetGradientView()
     }
 
     override init(frame: CGRect) {
@@ -130,14 +122,12 @@ extension MovieCardCVC {
         cardView.snp.makeConstraints { make in
             make.directionalEdges.equalTo(contentView)
         }
-        
-        layoutIfNeeded()
     }
-
+ 
     /// Update values used by view
     private func updateViewValues() {
         titleLabel.text(viewModel.title)
-        typeLabel.text(viewModel.type)
+        typeLabel.text(viewModel.typeFormatted)
         yearLabel.text(viewModel.year)
         bannerView.loadImageFrom(url: viewModel.posterUrl, onSuccess: { [weak self] in
             self?.bannerView.layer.masksToBounds = true
@@ -146,6 +136,54 @@ extension MovieCardCVC {
             self?.bannerView.layer.masksToBounds = true
             self?.bannerView.contentMode(.center)
             self?.bannerView.tintColor = .gray
+        }
+        setupGradientView()
+    }
+
+    /// Method to reset gradient view
+    private func resetGradientView() {
+        gradientView
+            .layer
+            .sublayers?
+            .forEach { $0.removeFromSuperlayer() }
+    }
+
+    /// Method to setup gradient view
+    private func setupGradientView() {
+        layoutIfNeeded()
+
+        let gradient = CAGradientLayer().with {
+            $0.frame = self.gradientView.bounds
+            $0.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+            $0.cornerRadius = 20
+        }
+
+        if self.gradientView.layer.sublayers == nil {
+            self.gradientView.layer.insertSublayer(gradient, at: 0)
+        }
+    }
+}
+
+// MARK: - Skeleton helper
+extension MovieCardCVC {
+
+    /// Show loading skeleton
+    func showSkeleton() {
+        cardView.with {
+            $0.layoutIfNeeded()
+            $0.showAnimatedGradientSkeleton(
+                usingGradient: .init(
+                    baseColor: UIColor(red: 0.90, green: 0.91, blue: 0.91, alpha: 1.00),
+                    secondaryColor: UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00))
+            )
+        }
+    }
+
+    /// Hide loading skeleton
+    func hideSkeleton() {
+        cardView.with {
+            $0.layoutIfNeeded()
+            $0.hideSkeleton()
         }
     }
 }

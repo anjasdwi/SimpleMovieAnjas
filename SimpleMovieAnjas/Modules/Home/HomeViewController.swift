@@ -57,15 +57,23 @@ extension HomeViewController {
 
         typealias DataSource = RxCollectionViewSectionedReloadDataSource
         let dataSource = DataSource<HomeViewListSectionModel>(
-              configureCell: { _, tableView, indexPath, viewModel in
-
-                  let cell = tableView.dequeueReusableCell(
-                    withReuseIdentifier: MovieCardCVC.reuseIdentifier,
-                    for: indexPath) as! MovieCardCVC
-                  cell.viewModel = viewModel
-
-                  return cell
-
+              configureCell: { dataSource, tableView, indexPath, _ in
+                  switch dataSource[indexPath] {
+                  case .list(let viewModel):
+                      let cell = tableView.dequeueReusableCell(
+                        withReuseIdentifier: MovieCardCVC.reuseIdentifier,
+                        for: indexPath) as! MovieCardCVC
+                      cell.viewModel = viewModel
+                      return cell
+                  case .skeleton:
+                      let cell = tableView.dequeueReusableCell(
+                        withReuseIdentifier: MovieCardCVC.reuseIdentifier,
+                        for: indexPath) as! MovieCardCVC
+                      cell.showSkeleton()
+                      return cell
+                  default:
+                      return UICollectionViewCell()
+                  }
             })
 
         viewModel

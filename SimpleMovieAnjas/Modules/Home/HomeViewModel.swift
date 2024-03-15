@@ -76,6 +76,7 @@ extension HomeViewModel {
 
     /// Fetch data from movie list API
     private func fetchMovieList(term: String) {
+        _homeViewListSection.accept(getSkeletonSection())
 
         let req = MovieRequestParams(term: term, page: 1)
         movieNetworkService.getMovieList(requestParams: req) { [weak self] result in
@@ -83,25 +84,39 @@ extension HomeViewModel {
 
             switch result {
             case .success(let movieListModel):
-                _homeViewListSection.accept(generateSectionModel(from: movieListModel.search ?? []))
+                self._homeViewListSection.accept(self.getListSection(from: movieListModel.search ?? []))
             case .failure(let error):
                 print("Handle error here", error)
             }
 
         }
-
     }
 
-    private func generateSectionModel(from model: [MovieDetailModel]) -> [HomeViewListSectionModel] {
-        let items = model.map {
-            MovieCardCVCViewModel(
-                title: $0.title ?? "",
-                year: $0.year ?? "",
-                type: $0.type ?? "",
-                posterUrl: $0.poster ?? ""
-            )
-        }
+}
 
+// MARK: - Helper compose data
+extension HomeViewModel {
+
+    /// Function used for compose model from MovieListModel into array of HomeViewListSectionModel
+    /// - Parameter models: array origin model to be composed
+    private func getListSection(from models: [MovieDetailModel]) -> [HomeViewListSectionModel] {
+        let items = models.map {
+            HomeViewItemModel
+                .list(
+                    viewModel: MovieCardCVCViewModel(
+                        title: $0.title ?? "",
+                        year: $0.year ?? "",
+                        type: $0.type ?? "",
+                        posterUrl: $0.poster ?? ""
+                    )
+                )
+        }
+        return [HomeViewListSectionModel(items: items)]
+    }
+
+    /// Function to get HomeViewListSectionModel for skeleton state
+    private func getSkeletonSection() -> [HomeViewListSectionModel] {
+        let items = Array(repeating: HomeViewItemModel.skeleton, count: 6)
         return [HomeViewListSectionModel(items: items)]
     }
 

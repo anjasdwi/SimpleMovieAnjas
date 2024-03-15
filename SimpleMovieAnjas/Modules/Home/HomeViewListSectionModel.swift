@@ -7,12 +7,18 @@
 
 import RxDataSources
 
+enum HomeViewItemModel {
+    case list(viewModel: MovieCardCVCViewModel)
+    case empty
+    case skeleton
+}
+
 struct HomeViewListSectionModel {
     var items: [Item]
 }
 
 extension HomeViewListSectionModel: SectionModelType {
-    typealias Item = MovieCardCVCViewModel
+    typealias Item = HomeViewItemModel
 
     init(original: HomeViewListSectionModel, items: [Item]) {
         self = original
