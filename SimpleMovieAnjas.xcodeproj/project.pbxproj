@@ -34,6 +34,9 @@
 		67A7746A2BA3419E00C0F6C1 /* MovieCardCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774692BA3419E00C0F6C1 /* MovieCardCVC.swift */; };
 		67A7746C2BA34DF000C0F6C1 /* UIImage+LoadUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7746B2BA34DF000C0F6C1 /* UIImage+LoadUrl.swift */; };
 		67A7746E2BA358A400C0F6C1 /* MovieCardCVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7746D2BA358A400C0F6C1 /* MovieCardCVCViewModel.swift */; };
+		67A774722BA3613300C0F6C1 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774712BA3613200C0F6C1 /* SearchBarView.swift */; };
+		67A774752BA3620900C0F6C1 /* MovieTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774742BA3620900C0F6C1 /* MovieTextField.swift */; };
+		67A774772BA372AF00C0F6C1 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774762BA372AF00C0F6C1 /* UIViewController+Keyboard.swift */; };
 		ED4AC8AD8D3FA777289C433A /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2CD10026336BD753E848B4 /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +91,9 @@
 		67A774692BA3419E00C0F6C1 /* MovieCardCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardCVC.swift; sourceTree = "<group>"; };
 		67A7746B2BA34DF000C0F6C1 /* UIImage+LoadUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+LoadUrl.swift"; sourceTree = "<group>"; };
 		67A7746D2BA358A400C0F6C1 /* MovieCardCVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardCVCViewModel.swift; sourceTree = "<group>"; };
+		67A774712BA3613200C0F6C1 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		67A774742BA3620900C0F6C1 /* MovieTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTextField.swift; sourceTree = "<group>"; };
+		67A774762BA372AF00C0F6C1 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		6A836C3C3031089A00EB8CE6 /* Pods-SimpleMovieAnjasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMovieAnjasTests.release.xcconfig"; path = "Target Support Files/Pods-SimpleMovieAnjasTests/Pods-SimpleMovieAnjasTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E2CD10026336BD753E848B4 /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5C82D7614A4189ACEBDB639 /* Pods_SimpleMovieAnjasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMovieAnjasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +236,7 @@
 				67A7745A2BA325B500C0F6C1 /* ReuseIdentifying.swift */,
 				67A7745C2BA326E200C0F6C1 /* UICollectionView+CellRegister.swift */,
 				67A7746B2BA34DF000C0F6C1 /* UIImage+LoadUrl.swift */,
+				67A774762BA372AF00C0F6C1 /* UIViewController+Keyboard.swift */,
 			);
 			path = ProtocolsExtensions;
 			sourceTree = "<group>";
@@ -274,6 +281,8 @@
 		67A774672BA3404600C0F6C1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				67A774732BA361F100C0F6C1 /* MovieTextField */,
+				67A774702BA360C200C0F6C1 /* SearchBarView */,
 				67A774682BA3404F00C0F6C1 /* MovieCardCVC */,
 			);
 			path = Components;
@@ -286,6 +295,22 @@
 				67A7746D2BA358A400C0F6C1 /* MovieCardCVCViewModel.swift */,
 			);
 			path = MovieCardCVC;
+			sourceTree = "<group>";
+		};
+		67A774702BA360C200C0F6C1 /* SearchBarView */ = {
+			isa = PBXGroup;
+			children = (
+				67A774712BA3613200C0F6C1 /* SearchBarView.swift */,
+			);
+			path = SearchBarView;
+			sourceTree = "<group>";
+		};
+		67A774732BA361F100C0F6C1 /* MovieTextField */ = {
+			isa = PBXGroup;
+			children = (
+				67A774742BA3620900C0F6C1 /* MovieTextField.swift */,
+			);
+			path = MovieTextField;
 			sourceTree = "<group>";
 		};
 		86AA7D43510D70710F85CEE7 /* Frameworks */ = {
@@ -550,6 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A774722BA3613300C0F6C1 /* SearchBarView.swift in Sources */,
 				67A774662BA33CEE00C0F6C1 /* HomeViewListSectionModel.swift in Sources */,
 				67A774522BA3230400C0F6C1 /* UILabel+DSL.swift in Sources */,
 				67A774142BA1EDAB00C0F6C1 /* HomeViewController.swift in Sources */,
@@ -561,6 +587,8 @@
 				67A774622BA32E2E00C0F6C1 /* BaseViewController.swift in Sources */,
 				67A7744E2BA322BA00C0F6C1 /* UIView+DSL.swift in Sources */,
 				67A7746C2BA34DF000C0F6C1 /* UIImage+LoadUrl.swift in Sources */,
+				67A774752BA3620900C0F6C1 /* MovieTextField.swift in Sources */,
+				67A774772BA372AF00C0F6C1 /* UIViewController+Keyboard.swift in Sources */,
 				67A774572BA324E600C0F6C1 /* Image.swift in Sources */,
 				67A7745D2BA326E200C0F6C1 /* UICollectionView+CellRegister.swift in Sources */,
 				67A7745B2BA325B500C0F6C1 /* ReuseIdentifying.swift in Sources */,
@@ -751,7 +779,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TVCGQ54CNU;
+				DEVELOPMENT_TEAM = 62Z829PAX3;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleMovieAnjas/Info.plist;
@@ -759,6 +787,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -781,7 +810,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TVCGQ54CNU;
+				DEVELOPMENT_TEAM = 62Z829PAX3;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SimpleMovieAnjas/Info.plist;
@@ -789,6 +818,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

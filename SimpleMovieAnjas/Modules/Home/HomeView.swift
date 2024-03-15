@@ -9,9 +9,11 @@ import UIKit
 
 final class HomeView: UIView {
 
+    let searchBarView = SearchBarView()
+
     lazy var movieListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout().with {
-            $0.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            $0.sectionInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
             $0.minimumInteritemSpacing = 24
             $0.minimumLineSpacing = 24
         }
@@ -39,13 +41,22 @@ final class HomeView: UIView {
     }
 
     private func layoutViews() {
+        searchBarView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
+        }
+
         movieListCollectionView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview()
+            make.top.equalTo(searchBarView.snp.bottom).offset(16)
+            make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(16)
         }
     }
 
     private func setupViews() {
-        addSubviews { movieListCollectionView }
+        addSubviews {
+            searchBarView
+            movieListCollectionView
+        }
     }
 }

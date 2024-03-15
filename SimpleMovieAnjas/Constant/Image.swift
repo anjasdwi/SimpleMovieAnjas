@@ -8,5 +8,5 @@
 import Foundation
 
 enum IMAGE {
-    static let home = "ic_home"
+    static let icSearch = "ic_search"
 }

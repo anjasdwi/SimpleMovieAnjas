@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import RxGesture
 
 final class HomeViewController: BaseViewController {
 
@@ -75,11 +76,43 @@ extension HomeViewController {
     }
 
     /// Setup binding views
-    private func bindViews() { }
+    private func bindViews() {
+
+        mainView.searchBarView.searchTextField
+            .rx.controlEvent(.editingDidBegin)
+            .do(afterNext: { [weak self] in
+                self?.hideNavigationBar()
+            })
+            .map { _ in false }
+            .bind(to: mainView.searchBarView.cancelLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+
+        mainView.searchBarView.cancelLabel
+            .rx.tapGesture()
+            .when(.recognized)
+            .do(afterNext: { [weak self] _ in
+                self?.showNavigationBar()
+            })
+            .map { _ in true }
+            .bind(to: mainView.searchBarView.cancelLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+
+        mainView.movieListCollectionView
+            .rx.contentOffset
+            .bind { [weak self] _ in
+                self?.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
+
+    }
 }
 
 // MARK: - Helper views
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+
+    private func setupViews() {
+        self.title = WORDING.home
+    }
 
     func collectionView(
         _ collectionView: UICollectionView,
@@ -90,7 +123,4 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: (width * 0.5) - 28, height: 280)
     }
 
-    private func setupViews() {
-        self.title = WORDING.home
-    }
 }

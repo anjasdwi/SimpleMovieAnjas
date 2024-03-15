@@ -9,4 +9,6 @@ import Foundation
 
 enum WORDING {
     static let home = "Home"
+    static let searchMovie = "Search movie"
+    static let cancel = "Cancel"
 }
