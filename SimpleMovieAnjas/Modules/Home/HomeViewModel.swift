@@ -46,9 +46,14 @@ final class HomeViewModel: HomeViewModelInterface {
 
     // MARK: - Managers
     private let movieNetworkService: MovieRepositoryInterface
+    private let cacheManager: NSMovieCacheManagerInterface
 
-    init(movieNetworkService: MovieRepositoryInterface = MovieRepository()) {
+    init(
+        movieNetworkService: MovieRepositoryInterface = MovieRepository(),
+        cacheManager: NSMovieCacheManagerInterface = NSMovieCacheManager.shared
+    ) {
         self.movieNetworkService = movieNetworkService
+        self.cacheManager = cacheManager
         self.bindInput()
     }
 }
@@ -74,21 +79,35 @@ extension HomeViewModel {
 // MARK: - Network
 extension HomeViewModel {
 
-    /// Fetch data from movie list API
-    private func fetchMovieList(term: String) {
-        _homeViewListSection.accept(getSkeletonSection())
+    /// Fetch data from movie list
+    private func fetchMovieList(term: String, page: Int = 1) {
 
-        let req = MovieRequestParams(term: term, page: 1)
-        movieNetworkService.getMovieList(requestParams: req) { [weak self] result in
-            guard let self else { return }
+        /// If there is cache datas, then show cache datas
+        if let cacheDatas = cacheManager.get(name: "\(term)\(page)")?.datas, !cacheDatas.isEmpty {
+            self._homeViewListSection.accept(getListSection(from: cacheDatas))
+        } else {
+            fetchFromRemote()
+        }
 
-            switch result {
-            case .success(let movieListModel):
-                self._homeViewListSection.accept(self.getListSection(from: movieListModel.search ?? []))
-            case .failure(let error):
-                print("Handle error here", error)
+        /// Method for fetch data from remote
+        func fetchFromRemote() {
+            _homeViewListSection.accept(getSkeletonSection())
+
+            let req = MovieRequestParams(term: term, page: page)
+            movieNetworkService.getMovieList(requestParams: req) { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let movieListModel):
+
+                    if let datas = movieListModel.search {
+                        cacheManager.add(data: CacheMovieModel(datas: datas), name: "\(term)\(page)")
+                    }
+
+                    self._homeViewListSection.accept(self.getListSection(from: movieListModel.search ?? []))
+                case .failure(let error):
+                    print("Handle error here", error)
+                }
             }
-
         }
     }
 

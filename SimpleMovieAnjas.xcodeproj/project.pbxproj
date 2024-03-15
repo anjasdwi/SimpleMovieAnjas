@@ -47,6 +47,8 @@
 		67A7748A2BA3FA4800C0F6C1 /* MovieDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774892BA3FA4800C0F6C1 /* MovieDetailModel.swift */; };
 		67A7748C2BA4034600C0F6C1 /* Dictionary+Modified.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7748B2BA4034600C0F6C1 /* Dictionary+Modified.swift */; };
 		67A7748E2BA43E6800C0F6C1 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7748D2BA43E6800C0F6C1 /* API.swift */; };
+		67A774902BA4855000C0F6C1 /* NSMovieCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7748F2BA4855000C0F6C1 /* NSMovieCacheManager.swift */; };
+		67A774932BA48F8400C0F6C1 /* CacheMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774922BA48F8400C0F6C1 /* CacheMovieModel.swift */; };
 		ED4AC8AD8D3FA777289C433A /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2CD10026336BD753E848B4 /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +116,8 @@
 		67A774892BA3FA4800C0F6C1 /* MovieDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModel.swift; sourceTree = "<group>"; };
 		67A7748B2BA4034600C0F6C1 /* Dictionary+Modified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Modified.swift"; sourceTree = "<group>"; };
 		67A7748D2BA43E6800C0F6C1 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		67A7748F2BA4855000C0F6C1 /* NSMovieCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMovieCacheManager.swift; sourceTree = "<group>"; };
+		67A774922BA48F8400C0F6C1 /* CacheMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheMovieModel.swift; sourceTree = "<group>"; };
 		6A836C3C3031089A00EB8CE6 /* Pods-SimpleMovieAnjasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMovieAnjasTests.release.xcconfig"; path = "Target Support Files/Pods-SimpleMovieAnjasTests/Pods-SimpleMovieAnjasTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E2CD10026336BD753E848B4 /* Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMovieAnjas_SimpleMovieAnjasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5C82D7614A4189ACEBDB639 /* Pods_SimpleMovieAnjasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMovieAnjasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +272,7 @@
 		67A774472BA1FFB900C0F6C1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				67A774912BA48F6400C0F6C1 /* Cache */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -365,6 +370,15 @@
 				67A774892BA3FA4800C0F6C1 /* MovieDetailModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		67A774912BA48F6400C0F6C1 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				67A7748F2BA4855000C0F6C1 /* NSMovieCacheManager.swift */,
+				67A774922BA48F8400C0F6C1 /* CacheMovieModel.swift */,
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		86AA7D43510D70710F85CEE7 /* Frameworks */ = {
@@ -643,6 +657,7 @@
 				67A7744C2BA3229600C0F6C1 /* NSObject+Withable.swift in Sources */,
 				67A774622BA32E2E00C0F6C1 /* BaseViewController.swift in Sources */,
 				67A7744E2BA322BA00C0F6C1 /* UIView+DSL.swift in Sources */,
+				67A774902BA4855000C0F6C1 /* NSMovieCacheManager.swift in Sources */,
 				67A7746C2BA34DF000C0F6C1 /* UIImage+LoadUrl.swift in Sources */,
 				67A774752BA3620900C0F6C1 /* MovieTextField.swift in Sources */,
 				67A7747B2BA3ECE100C0F6C1 /* ApiRouter.swift in Sources */,
@@ -659,6 +674,7 @@
 				67A7744A2BA3227500C0F6C1 /* UIStackView+DSL.swift in Sources */,
 				67A774402BA1F86A00C0F6C1 /* HomeView.swift in Sources */,
 				67A774102BA1EDAB00C0F6C1 /* AppDelegate.swift in Sources */,
+				67A774932BA48F8400C0F6C1 /* CacheMovieModel.swift in Sources */,
 				67A7748E2BA43E6800C0F6C1 /* API.swift in Sources */,
 				67A774502BA322EA00C0F6C1 /* UIImage+DSL.swift in Sources */,
 			);
