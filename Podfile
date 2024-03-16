@@ -11,6 +11,7 @@ def common_pods
   pod "RxGesture"
   pod 'RxDataSources'
   pod 'SkeletonView'
+  pod 'ReachabilitySwift'
 end
 
 target 'SimpleMovieAnjas' do
@@ -37,6 +38,7 @@ post_install do |installer|
       xcconfig = File.read(xcconfig_path)
       xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
       File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
     end
   end
 end

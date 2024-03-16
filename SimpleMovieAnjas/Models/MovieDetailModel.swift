@@ -2,7 +2,7 @@
 //  MovieDetailModel.swift.swift
 //  SimpleMovieAnjas
 //
-//  Created by Engineer on 15/03/24.
+//  Created by Anjas Dwi on 15/03/24.
 //
 
 import Foundation

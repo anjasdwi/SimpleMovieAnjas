@@ -51,6 +51,26 @@ extension HomeViewController {
                 self?.setupViews()
             }.disposed(by: disposeBag)
 
+        viewModel
+            .showState
+            .emit { [weak self] params in
+                self?.mainView.stateView.with {
+                    $0.isHidden = false
+                    $0.descriptionLabel.text = params.description
+                    $0.illustrationView.image(UIImage(named: params.illustration))
+                    $0.button.setTitle(params.buttonTitle, for: .normal)
+                }
+            }.disposed(by: disposeBag)
+
+        viewModel
+            .resetSearchAndFocus
+            .emit { [weak self] _ in
+                self?.mainView.searchBarView.with {
+                    $0.searchTextField.text = ""
+                    $0.searchTextField.becomeFirstResponder()
+                }
+            }.disposed(by: disposeBag)
+
         mainView.movieListCollectionView.rx
             .setDelegate(self)
             .disposed(by: disposeBag)
@@ -78,9 +98,11 @@ extension HomeViewController {
 
         viewModel
             .homeViewListSection
+            .do(onNext: { [weak self] _ in
+                self?.mainView.stateView.isHidden = true
+            })
             .drive(mainView.movieListCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-
     }
 
     /// Setup binding views
@@ -100,11 +122,13 @@ extension HomeViewController {
             .when(.recognized)
             .do(afterNext: { [weak self] _ in
                 self?.showNavigationBar()
-                self?.mainView.searchBarView.searchTextField.text = ""
-                self?.viewModel.searchKeyword.accept("")
+                self?.mainView.searchBarView.with {
+                    $0.searchTextField.text = ""
+                    $0.cancelLabel.isHidden = true
+                }
             })
-            .map { _ in true }
-            .bind(to: mainView.searchBarView.cancelLabel.rx.isHidden)
+            .map { _ in "" }
+            .bind(to: viewModel.searchKeyword)
             .disposed(by: disposeBag)
 
         mainView.movieListCollectionView
@@ -121,6 +145,12 @@ extension HomeViewController {
             .bind(to: self.viewModel.searchKeyword)
             .disposed(by: disposeBag)
 
+        mainView.stateView.button
+            .rx.tapGesture()
+            .map { _ in Void() }
+            .bind(to: viewModel.didTappedStateButton)
+            .disposed(by: disposeBag)
+
     }
 }
 
@@ -128,7 +158,7 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
     private func setupViews() {
-        self.title = WORDING.home
+        title = WORDING.home
     }
 
     func collectionView(

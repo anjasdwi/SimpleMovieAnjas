@@ -35,7 +35,11 @@ class NetworkServiceManager: NetworkServiceManagerProtocol {
                     completion(.success(data))
                 case let .failure(error):
                     print("Request Error", error)
-                    completion(.failure(.internalServerError))
+                    if let errDesc = error.errorDescription,errDesc.lowercased().contains("offline") {
+                        completion(.failure(.noInternetConnection))
+                    } else {
+                        completion(.failure(.internalServerError))
+                    }
                 }
             })
     }

@@ -9,6 +9,10 @@ import UIKit
 
 final class HomeView: UIView {
 
+    let stateView = StateView().with {
+        $0.isHidden = true
+    }
+
     let searchBarView = SearchBarView()
 
     lazy var movieListCollectionView: UICollectionView = {
@@ -21,6 +25,7 @@ final class HomeView: UIView {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout).with {
             $0.showsVerticalScrollIndicator = false
             $0.backgroundColor = .white
+            $0.alwaysBounceVertical = true
             $0.registerClass(with: [MovieCardCVC.self])
         }
 
@@ -51,6 +56,11 @@ final class HomeView: UIView {
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(16)
         }
+
+        stateView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(100)
+            make.centerX.equalTo(movieListCollectionView)
+        }
     }
 
     private func setupViews() {
@@ -58,5 +68,7 @@ final class HomeView: UIView {
             searchBarView
             movieListCollectionView
         }
+
+        movieListCollectionView.addSubviews { stateView }
     }
 }

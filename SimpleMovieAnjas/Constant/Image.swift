@@ -9,4 +9,5 @@ import Foundation
 
 enum IMAGE {
     static let icSearch = "ic_search"
+    static let ill_state = "ill_state"
 }
