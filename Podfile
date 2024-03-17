@@ -23,6 +23,9 @@ target 'SimpleMovieAnjas' do
   target 'SimpleMovieAnjasTests' do
     inherit! :search_paths
     # Pods for testing
+    common_pods
+    pod 'RxBlocking'
+    pod 'RxTest'
   end
 
   target 'SimpleMovieAnjasUITests' do
