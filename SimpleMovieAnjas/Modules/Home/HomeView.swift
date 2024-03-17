@@ -15,6 +15,11 @@ final class HomeView: UIView {
 
     let searchBarView = SearchBarView()
 
+    lazy var refreshControl = UIRefreshControl().with {
+        $0.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        $0.tintColor(.blue.withAlphaComponent(0.5))
+    }
+
     lazy var movieListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout().with {
             $0.sectionInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
@@ -27,6 +32,7 @@ final class HomeView: UIView {
             $0.backgroundColor = .white
             $0.alwaysBounceVertical = true
             $0.registerClass(with: [MovieCardCVC.self, LoadingCVC.self])
+            $0.refreshControl = refreshControl
         }
 
         return cv

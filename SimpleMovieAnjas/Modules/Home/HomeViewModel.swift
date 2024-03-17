@@ -37,9 +37,9 @@ final class HomeViewModel: HomeViewModelInterface {
 
     // MARK: Pagination manager
     let searchKeyword = BehaviorRelay<String>(value: "")
+    let goToNextPage = PublishRelay<Void>()
     var page = 1
     var pageLoading = true
-    let goToNextPage = PublishRelay<Void>()
 
     // MARK: Observables for handle the data and section
     var movieDetailModels: [MovieDetailModel] = []

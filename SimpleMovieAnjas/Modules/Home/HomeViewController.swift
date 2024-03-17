@@ -104,6 +104,7 @@ extension HomeViewController {
             .homeViewListSection
             .do(onNext: { [weak self] _ in
                 self?.mainView.stateView.isHidden = true
+                self?.mainView.refreshControl.endRefreshing()
             })
             .drive(mainView.movieListCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -111,6 +112,13 @@ extension HomeViewController {
 
     /// Setup binding views
     private func bindViews() {
+
+        mainView.refreshControl
+            .rx.controlEvent(.valueChanged)
+            .map { [unowned self] _
+                in self.mainView.searchBarView.searchTextField.text ?? ""
+            }.bind(to: viewModel.searchKeyword)
+            .disposed(by: disposeBag)
 
         mainView.searchBarView.searchTextField
             .rx.controlEvent(.editingDidBegin)
