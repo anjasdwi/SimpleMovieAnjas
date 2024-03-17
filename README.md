@@ -38,18 +38,15 @@
 
 This project was created to fulfill the requirements of the app coding challenge.
 
-<img src="Screenshot/home.jpeg" alt="Home" width="30%">
-<img src="Screenshot/pagination.jpeg" alt="Home" width="30%">
-<img src="Screenshot/skeleton" alt="Home" width="30%">
-<img src="Screenshot/no_connection" alt="Home" width="30%">
-<img src="Screenshot/no_result" alt="Home" width="30%">
+<img src="Screenshot/home.jpeg" alt="Home" width="30%"> <img src="Screenshot/pagination.jpeg" alt="Home" width="30%"> <img src="Screenshot/skeleton.jpeg" alt="Home" width="30%"><img src="Screenshot/no-connection.jpeg" alt="Home" width="30%"> <img src="Screenshot/no_result.jpeg" alt="Home" width="30%">
 
 ### Dependencies
-* <b>Reactive programming: RxSwift, RxCocoa, RxTapGesture, RxDataSources</b>
+* <b>Reactive programming: RxSwift, RxCocoa, RxTapGesture, RxDataSources, RxTest</b>
 * <b>Network Service: Alamofire</b>
 * <b>SnapKit</b>
 * <b>SDWebImage</b>
 * <b>SkeletonView</b>
+* <b>ReachabilitySwift</b>
 
 
 <!-- GETTING STARTED -->
