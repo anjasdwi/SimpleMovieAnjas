@@ -10,6 +10,7 @@
 		2DA7120780420F8E50F5ED4D /* Pods_SimpleMovieAnjas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5661DD1FF43BD9149693CB66 /* Pods_SimpleMovieAnjas.framework */; };
 		481FD5CC74109F672D5B8E4E /* Pods_SimpleMovieAnjasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5C82D7614A4189ACEBDB639 /* Pods_SimpleMovieAnjasTests.framework */; };
 		67088BDD2BA619F3002C6C26 /* LoadingCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67088BDC2BA619F3002C6C26 /* LoadingCVC.swift */; };
+		67187E182BA73B580043FD6F /* HomeViewModel+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67187E172BA73B570043FD6F /* HomeViewModel+Network.swift */; };
 		671D134E2BA6D2EF0086BAD9 /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774A32BA565E200C0F6C1 /* HomeViewModelTest.swift */; };
 		671D13512BA6F8660086BAD9 /* MovieRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671D13502BA6F8660086BAD9 /* MovieRepositoryMock.swift */; };
 		671D13532BA6F89D0086BAD9 /* NSMovieCacheManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671D13522BA6F89D0086BAD9 /* NSMovieCacheManagerMock.swift */; };
@@ -20,7 +21,6 @@
 		67A774172BA1EDAB00C0F6C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A774152BA1EDAB00C0F6C1 /* Main.storyboard */; };
 		67A774192BA1EDAD00C0F6C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67A774182BA1EDAD00C0F6C1 /* Assets.xcassets */; };
 		67A7741C2BA1EDAD00C0F6C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A7741A2BA1EDAD00C0F6C1 /* LaunchScreen.storyboard */; };
-		67A774272BA1EDAE00C0F6C1 /* SimpleMovieAnjasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774262BA1EDAE00C0F6C1 /* SimpleMovieAnjasTests.swift */; };
 		67A774312BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774302BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITests.swift */; };
 		67A774332BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A774322BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITestsLaunchTests.swift */; };
 		67A774402BA1F86A00C0F6C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A7743F2BA1F86A00C0F6C1 /* HomeView.swift */; };
@@ -86,6 +86,7 @@
 		4037AB88DD76BAAE621AF9A2 /* Pods-SimpleMovieAnjas-SimpleMovieAnjasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleMovieAnjas-SimpleMovieAnjasUITests.release.xcconfig"; path = "Target Support Files/Pods-SimpleMovieAnjas-SimpleMovieAnjasUITests/Pods-SimpleMovieAnjas-SimpleMovieAnjasUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5661DD1FF43BD9149693CB66 /* Pods_SimpleMovieAnjas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleMovieAnjas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67088BDC2BA619F3002C6C26 /* LoadingCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCVC.swift; sourceTree = "<group>"; };
+		67187E172BA73B570043FD6F /* HomeViewModel+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewModel+Network.swift"; sourceTree = "<group>"; };
 		671D13502BA6F8660086BAD9 /* MovieRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryMock.swift; sourceTree = "<group>"; };
 		671D13522BA6F89D0086BAD9 /* NSMovieCacheManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMovieCacheManagerMock.swift; sourceTree = "<group>"; };
 		671D13542BA71CEA0086BAD9 /* HomeViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTest.swift; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		67A7741B2BA1EDAD00C0F6C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		67A7741D2BA1EDAD00C0F6C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67A774222BA1EDAE00C0F6C1 /* SimpleMovieAnjasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleMovieAnjasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		67A774262BA1EDAE00C0F6C1 /* SimpleMovieAnjasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMovieAnjasTests.swift; sourceTree = "<group>"; };
 		67A7742C2BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleMovieAnjasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		67A774302BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMovieAnjasUITests.swift; sourceTree = "<group>"; };
 		67A774322BA1EDAE00C0F6C1 /* SimpleMovieAnjasUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMovieAnjasUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -238,7 +238,6 @@
 			children = (
 				671D134F2BA6F8510086BAD9 /* Mock */,
 				67A774A12BA5657A00C0F6C1 /* Modules */,
-				67A774262BA1EDAE00C0F6C1 /* SimpleMovieAnjasTests.swift */,
 			);
 			path = SimpleMovieAnjasTests;
 			sourceTree = "<group>";
@@ -270,6 +269,7 @@
 				67A774132BA1EDAB00C0F6C1 /* HomeViewController.swift */,
 				67A7745E2BA32B8C00C0F6C1 /* HomeViewModel.swift */,
 				67A7749C2BA4C19B00C0F6C1 /* HomeViewModel+Helper.swift */,
+				67187E172BA73B570043FD6F /* HomeViewModel+Network.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -781,6 +781,7 @@
 				67A774102BA1EDAB00C0F6C1 /* AppDelegate.swift in Sources */,
 				67A774932BA48F8400C0F6C1 /* CacheMovieModel.swift in Sources */,
 				67A7748E2BA43E6800C0F6C1 /* API.swift in Sources */,
+				67187E182BA73B580043FD6F /* HomeViewModel+Network.swift in Sources */,
 				67A774502BA322EA00C0F6C1 /* UIImage+DSL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -789,7 +790,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67A774272BA1EDAE00C0F6C1 /* SimpleMovieAnjasTests.swift in Sources */,
 				671D13552BA71CEA0086BAD9 /* HomeViewControllerTest.swift in Sources */,
 				671D13512BA6F8660086BAD9 /* MovieRepositoryMock.swift in Sources */,
 				671D13532BA6F89D0086BAD9 /* NSMovieCacheManagerMock.swift in Sources */,
