@@ -26,7 +26,7 @@ final class HomeView: UIView {
             $0.showsVerticalScrollIndicator = false
             $0.backgroundColor = .white
             $0.alwaysBounceVertical = true
-            $0.registerClass(with: [MovieCardCVC.self])
+            $0.registerClass(with: [MovieCardCVC.self, LoadingCVC.self])
         }
 
         return cv

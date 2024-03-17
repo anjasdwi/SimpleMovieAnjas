@@ -91,8 +91,12 @@ extension HomeViewController {
                         for: indexPath) as! MovieCardCVC
                       cell.showSkeleton()
                       return cell
-                  default:
-                      return UICollectionViewCell()
+                  case .paginationLoading:
+                      let cell = tableView.dequeueReusableCell(
+                        withReuseIdentifier: LoadingCVC.reuseIdentifier,
+                        for: indexPath) as! LoadingCVC
+                      cell.startAnimating()
+                      return cell
                   }
             })
 
@@ -121,6 +125,7 @@ extension HomeViewController {
             .rx.tapGesture()
             .when(.recognized)
             .do(afterNext: { [weak self] _ in
+                self?.mainView.movieListCollectionView.setContentOffset(.zero, animated: false)
                 self?.showNavigationBar()
                 self?.mainView.searchBarView.with {
                     $0.searchTextField.text = ""
@@ -131,12 +136,17 @@ extension HomeViewController {
             .bind(to: viewModel.searchKeyword)
             .disposed(by: disposeBag)
 
+        // Subscribe content offset changes event of collection view
         mainView.movieListCollectionView
             .rx.contentOffset
-            .bind { [weak self] _ in
-                self?.view.endEditing(true)
-            }
-            .disposed(by: disposeBag)
+            .bind { [weak self] val in
+                guard let self else { return }
+                let cv = self.mainView.movieListCollectionView
+                self.view.endEditing(true)
+                if val.y >= (cv.contentSize.height - cv.frame.size.height) {
+                    self.viewModel.goToNextPage.accept(())
+                }
+            }.disposed(by: disposeBag)
 
         mainView.searchBarView.searchTextField
             .rx.controlEvent(.editingChanged)
@@ -167,7 +177,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         let width = view.frame.size.width
-        return CGSize(width: (width * 0.5) - 28, height: 280)
+        switch indexPath.section {
+        case 0:
+            return CGSize(width: (width * 0.5) - 28, height: 280)
+        default:
+            return CGSize(width: width, height: 24)
+        }
+
     }
 
 }

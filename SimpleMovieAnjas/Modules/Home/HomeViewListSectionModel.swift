@@ -9,8 +9,8 @@ import RxDataSources
 
 enum HomeViewItemModel {
     case list(viewModel: MovieCardCVCViewModel)
-    case empty
     case skeleton
+    case paginationLoading
 }
 
 struct HomeViewListSectionModel {

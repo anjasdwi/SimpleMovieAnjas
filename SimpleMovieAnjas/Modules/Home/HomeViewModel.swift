@@ -14,6 +14,7 @@ protocol HomeViewModelInput {
     var viewDidLoad: PublishRelay<Void> { get }
     var searchKeyword: BehaviorRelay<String> { get }
     var didTappedStateButton: PublishRelay<Void> { get }
+    var goToNextPage: PublishRelay<Void> { get }
 }
 
 protocol HomeViewModelOutput {
@@ -32,10 +33,16 @@ final class HomeViewModel: HomeViewModelInterface {
 
     // MARK: View event methods
     let viewDidLoad = PublishRelay<Void>()
-    let searchKeyword = BehaviorRelay<String>(value: "")
     let didTappedStateButton = PublishRelay<Void>()
 
+    // MARK: Pagination manager
+    let searchKeyword = BehaviorRelay<String>(value: "")
+    var page = 1
+    var pageLoading = true
+    let goToNextPage = PublishRelay<Void>()
+
     // MARK: Observables for handle the data and section
+    var movieDetailModels: [MovieDetailModel] = []
     let _homeViewListSection = BehaviorRelay<[HomeViewListSectionModel]>(value: [])
     var homeViewListSection: Driver<[HomeViewListSectionModel]> {
         _homeViewListSection.asDriver()
@@ -90,7 +97,18 @@ extension HomeViewModel {
         searchKeyword
             .map(termsFormatted)
             .bind { [weak self] term in
-                self?.fetchMovieList(term: term)
+                // reset pagination manager
+                self?.pageLoading = false
+                self?.page = 1
+                self?.fetchMovie(term: term)
+            }.disposed(by: disposeBag)
+
+        goToNextPage
+            .skip(1)
+            .withLatestFrom(searchKeyword)
+            .bind { [weak self] term in
+                guard let self else { return }
+                self.fetchMovieFromPagination(term: termsFormatted(from: term), page: self.page)
             }.disposed(by: disposeBag)
 
         didTappedStateButton
@@ -109,7 +127,14 @@ extension HomeViewModel {
 
         connectivity.noConnectAction = { [weak self] in
             guard let self else { return }
-            cacheChecking(onNotFound: { self._showState.accept(.noConnection) })
+
+            cacheChecking { cacheDatas in
+                self.movieDetailModels = cacheDatas
+                self._homeViewListSection.accept(self.getListSection(from: self.movieDetailModels))
+            } onNotFound: {
+                self._showState.accept(.noConnection)
+            }
+
         }
 
         connectivity.connectAction = { [weak self] in
@@ -124,15 +149,94 @@ extension HomeViewModel {
 // MARK: - Network
 extension HomeViewModel {
 
-    /// Fetch data from movie list
-    private func fetchMovieList(term: String, page: Int = 1) {
+    /// Method for fetch data
+    func fetchMovie(term: String) {
+        // Checking by page loading
+        // if from pagination and page loading is true, then return
+        // otherwise set page loading to true
+        if pageLoading { return }
+        else { pageLoading = true }
 
-        cacheChecking(onNotFound: { fetchFromRemote() })
+        // Checking cache
+        // if there is any cache, then fetch cache
+        // otherwise fetch from remote
+        cacheChecking { cacheDatas in
+            // update list section
+            updateListSection(isFromPagination: false, datas: cacheDatas)
+            // Helper used by pagination
+            self.pageLoading = false
+            self.page += 1
+        } onNotFound: {
+            fetchData()
+        }
 
-        /// Method for fetch data from remote
-        func fetchFromRemote() {
+        func fetchData() {
             connectivity.stop()
+
+            // Add loading skeleton into section
             _homeViewListSection.accept(getSkeletonSection())
+
+            let req = MovieRequestParams(term: term, page: 1)
+            movieNetworkService.getMovieList(requestParams: req) { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let movieListModel):
+                    if let datas = movieListModel.search {
+                        // Add data to cache
+                        cacheManager.add(data: CacheMovieModel(datas: datas), name: "\(term)\(self.page)")
+                        // update list section
+                        self.updateListSection(isFromPagination: false, datas: datas)
+                        // Helper used by pagination
+                        self.pageLoading = false
+                        self.page += 1
+                    } else {
+                        self._homeViewListSection.accept(self.getListSection(from: []))
+                        self._showState.accept(.empty)
+                    }
+                case .failure(let error):
+                    self._homeViewListSection.accept(self.getListSection(from: []))
+                    switch error {
+                    case .noInternetConnection:
+                        self._showState.accept(.noConnection)
+                        self.connectivity.start()
+                    default:
+                        self._showState.accept(.error)
+                    }
+                }
+
+            }
+        }
+    }
+
+    /// Method for fetch data using pagination
+    func fetchMovieFromPagination(
+        term: String,
+        page: Int = 1
+    ) {
+        // Checking by page loading
+        // if page loading is true, then return
+        // otherwise set page loading to true
+        if pageLoading { return }
+        else { pageLoading = true }
+
+        // Checking cache
+        // if there is any cache, then fetch cache
+        // otherwise fetch from remote
+        cacheChecking { cacheDatas in
+            // update list section
+            updateListSection(isFromPagination: true, datas: cacheDatas)
+            // Helper used by pagination
+            self.pageLoading = false
+            self.page += 1
+        } onNotFound: {
+            fetchData()
+        }
+
+        func fetchData() {
+            connectivity.stop()
+
+            // Add pagination loading into section
+            _homeViewListSection.accept(getSectionWithPaginationLoading())
 
             let req = MovieRequestParams(term: term, page: page)
             movieNetworkService.getMovieList(requestParams: req) { [weak self] result in
@@ -140,23 +244,20 @@ extension HomeViewModel {
                 switch result {
                 case .success(let movieListModel):
                     if let datas = movieListModel.search {
-                        cacheManager.add(data: CacheMovieModel(datas: datas), name: "\(term)\(page)")
-                        self._homeViewListSection.accept(self.getListSection(from: datas))
+                        // Add data to cache
+                        self.cacheManager.add(data: CacheMovieModel(datas: datas), name: "\(term)\(page)")
+                        // update list section
+                        self.updateListSection(isFromPagination: true, datas: datas)
+                        // Helper used by pagination
+                        self.pageLoading = false
+                        self.page += 1
                     } else {
-                        self._homeViewListSection.accept(self.getListSection(from: []))
-                        self._showState.accept(.empty)
+                        self._homeViewListSection.accept(self.getSectionWithoutPaginationLoading())
                     }
-                case .failure(let error):
-                    switch error {
-                    case .noInternetConnection:
-                        self._homeViewListSection.accept(self.getListSection(from: []))
-                        self._showState.accept(.noConnection)
-                        self.connectivity.start()
-                    default:
-                        self._homeViewListSection.accept(self.getListSection(from: []))
-                        self._showState.accept(.error)
-                    }
+                default:
+                    self._homeViewListSection.accept(self.getSectionWithoutPaginationLoading())
                 }
+
             }
         }
     }
